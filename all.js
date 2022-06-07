@@ -5,7 +5,10 @@ const btn_presents = document.querySelector("#btn-presents");
 const btn_envelopes = document.querySelector("#btn-envelopes");
 const btn_reset = document.querySelector("#btn-reset");
 
+const pointer = document.querySelector('.pointer');
+const btn_press = document.querySelector('#btn-press');
 
+const banner =  document.querySelector('#banner');
 
 let data = [];
 let game = null;
@@ -222,6 +225,12 @@ function draw(data,qty,type){
 function init(btn){
   type = btn.value
   draw(types[type].data, types[type].data.length, type)
+
+  //切換時 畫面校正回歸
+  pointer.style.transition = `unset`;
+  pointer.style.transform = `rotate(0deg)`;
+  banner.innerHTML = ``;
+  banner.classList.remove('banner');
 };
 init(btn_presents);
 
@@ -238,8 +247,8 @@ btn_envelopes.addEventListener('click',()=>{
 })
 
 // control press btn
-const btn_press = document.querySelector('#btn-press');
-const pointer = document.querySelector('.pointer');
+
+
 let degrees = 0;
 
 btn_press.addEventListener('click', press);
@@ -307,7 +316,7 @@ btn_reset.addEventListener('click', function() {
 
 
 //banner
-const banner =  document.querySelector('#banner');
+
 function bannerdraw(startstop, datatime, data) {
   if (!startstop) {
     banner.classList.add('banner');
